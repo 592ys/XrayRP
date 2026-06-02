@@ -1,19 +1,15 @@
-# ==========================
-# 仓库配置
-# ==========================
-
-GITHUB_USER="Mtoly"
-GITHUB_REPO="XrayRP"
-
-SCRIPT_REPO="592ys"
-
-RELEASE_API="https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}"
-RELEASE_BASE="https://github.com/${GITHUB_USER}/${GITHUB_REPO}"
-
-SCRIPT_BASE="https://raw.githubusercontent.com/${SCRIPT_REPO}/main"
-
-
 #!/bin/bash
+
+# ==========================================
+# 核心程序 Releases 所在仓库 (仅做展示使用)
+CORE_REPO="Mtoly/XrayRP"
+
+# 管理脚本所在仓库 (提供 install.sh, XrayR.sh 的仓库)
+SCRIPT_REPO="592ys/XRP"
+
+# 管理脚本所在分支 (通常为 master 或 main)
+SCRIPT_BRANCH="master"
+# ==========================================
 
 red='\033[0;31m'
 green='\033[0;32m'
@@ -99,7 +95,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/XrayR-project/XrayR-release/master/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/${SCRIPT_REPO}/${SCRIPT_BRANCH}/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -123,7 +119,7 @@ update() {
 #        fi
 #        return 0
 #    fi
-    bash <(curl -Ls https://raw.githubusercontent.com/XrayR-project/XrayR-release/master/install.sh) $version
+    bash <(curl -Ls https://raw.githubusercontent.com/${SCRIPT_REPO}/${SCRIPT_BRANCH}/install.sh) $version
     if [[ $? == 0 ]]; then
         echo -e "${green}更新完成，已自动重启 XrayR，请使用 XrayR log 查看运行日志${plain}"
         exit
@@ -285,7 +281,7 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/XrayR -N --no-check-certificate https://raw.githubusercontent.com/XrayR-project/XrayR-release/master/XrayR.sh
+    wget -O /usr/bin/XrayR -N --no-check-certificate https://raw.githubusercontent.com/${SCRIPT_REPO}/${SCRIPT_BRANCH}/XrayR.sh
     if [[ $? != 0 ]]; then
         echo ""
         echo -e "${red}下载脚本失败，请检查本机能否连接 Github${plain}"
@@ -402,7 +398,7 @@ show_usage() {
 show_menu() {
     echo -e "
   ${green}XrayR 后端管理脚本，${plain}${red}不适用于docker${plain}
---- https://github.com/XrayR-project/XrayR ---
+--- https://github.com/${CORE_REPO} ---
   ${green}0.${plain} 修改配置
 ————————————————
   ${green}1.${plain} 安装 XrayR
