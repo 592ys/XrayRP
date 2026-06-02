@@ -1,3 +1,18 @@
+# ==========================
+# 仓库配置
+# ==========================
+
+GITHUB_USER="Mtoly"
+GITHUB_REPO="XrayRP"
+
+SCRIPT_REPO="592ys"
+
+RELEASE_API="https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}"
+RELEASE_BASE="https://github.com/${GITHUB_USER}/${GITHUB_REPO}"
+
+SCRIPT_BASE="https://raw.githubusercontent.com/${SCRIPT_REPO}/main"
+
+
 #!/bin/bash
 
 red='\033[0;31m'
